@@ -1,0 +1,34 @@
+
+<div class="container">
+
+    <h1 [ngClass]="classPageTitle">Products List</h1>
+
+    <h2 [ngStyle]="stylePageTitle">Latest Products</h2>
+    <!-- <h2>{{mainThemeColor | uppercase}}</h2> -->
+
+    <!-- <input id="example" [(ngModel)]="mainThemeColor"> -->
+
+    <div class="row" *ngIf="isLoggedIn">
+        <div class="col-4" *ngFor="let product of products">
+            <div class="card" style="width:400px">
+                <img class="card-img-top" [src]="product.photo" [alt]="product.title">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a routerLink="/product/{{product.id}}">
+                            {{product.title}}
+                        </a>
+                    </h4>
+                    <p class="card-text">
+                        {{product.price}} EGP
+                    </p>
+                    <div [ngSwitch]="product.color">
+                        <p *ngSwitchCase="'Red'" class="text-danger">Red</p>
+                        <p *ngSwitchCase="'Green'" class="text-success">Green</p>
+                        <p *ngSwitchDefault>Other Color</p>
+                    </div>
+                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
